@@ -368,10 +368,12 @@
 "Assets/Scripts/ChangeScene.cs"
 "Assets/Scripts/follow.cs"
 "Assets/Scripts/guideFollow.cs"
+"Assets/Scripts/mainMenu.cs"
 "Assets/Scripts/player.cs"
 "Assets/Scripts/playerControll.cs"
 "Assets/SiuniaevCharacters/01_GamblerCat/Scripts/AnimationButton.cs"
 "Assets/SiuniaevCharacters/01_GamblerCat/Scripts/CharacterRotator.cs"
+"Assets/timerManager.cs"
 -langversion:9.0
 
 /deterministic
