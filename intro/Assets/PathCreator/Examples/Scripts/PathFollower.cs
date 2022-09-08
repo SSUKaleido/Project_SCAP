@@ -14,7 +14,7 @@ namespace PathCreation.Examples
       
         void Start() {
 
-            Invoke("Update",5.0f);
+            
 
             if (pathCreator != null)
             {
