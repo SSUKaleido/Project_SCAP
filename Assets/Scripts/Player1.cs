@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player1 : MonoBehaviour
 {
     public float  speed;
-    public GameObject[] item;
-    public bool[] hasitem;
 
     [SerializeField]
     private float cameraRotationLimit;  
@@ -38,9 +38,15 @@ public class Player : MonoBehaviour
 
     GameObject nearObject;
 
+    bool get_item_state;
+    int item_val;
+    int check_item_count;
+
     // Start is called before the first frame update
     void Start(){
         myRigid = GetComponent<Rigidbody>();  // private
+        check_item_count = 0;
+        get_item_state = false;
     }
 
     void Awake()
@@ -59,6 +65,10 @@ public class Player : MonoBehaviour
         Jump();
         Dodge();
         Interation();
+        if(item_check()){
+            print("sce");
+            SceneManager.LoadScene("quizroom");
+        }
     }
 
     void GetInPut(){
@@ -129,37 +139,64 @@ public class Player : MonoBehaviour
     }
 
     void Interation(){
-        if(e_Down && nearObject != null && !is_jump && !is_Dodge ){
-            if(nearObject.tag == "Bear"){
-                Item item = nearObject.GetComponent<Item>();
-                int bearIndex = item.val;
-                hasitem[bearIndex] = true;
+        if(e_Down && nearObject != null && !is_jump && !is_Dodge && !get_item_state){
+            print("get1");
+            if(nearObject.name == "picture"){
+                print("get1");
+                get_item_state = true;
                 Destroy(nearObject);
-                if(item_check() == true){
-                    trans = GameObject.FindWithTag("closet").GetComponent<Transform>();
-                    trans.Translate(Vector3.right*7);
-                    // Destroy(GameObject.FindWithTag("closet"));
-                }
+                item_val = 1;
+            }
+            else if(nearObject.name == "Teacup"){
+                print("get2");
+                get_item_state = true;
+                Destroy(nearObject);
+                item_val = 2;
+            }
+            else if(nearObject.name == "Black King"){
+                print("get3");
+                get_item_state = true;
+                Destroy(nearObject);
+                item_val = 3;
+            }
+        }
+        else if(e_Down && nearObject != null && !is_jump && !is_Dodge && get_item_state){
+
+            if(nearObject.name == "emptyframe" && item_val == 1){
+                print("drop1");
+                get_item_state = false;
+                check_item_count += 1;
+            }
+            else if(nearObject.name == "Teacupsaucer" && item_val == 2){
+                print("drop2");
+                get_item_state = false;
+                check_item_count += 1;
+            }
+            else if(nearObject.name == "Board" && item_val == 3){
+                print("drop3");
+                get_item_state = false;
+                check_item_count += 1;
             }
         }
     }
 
 
     bool item_check(){
-        for(int i = 0; i<4; i++){
-            if(hasitem[i] == false){
-                return false;
-            }
+        if(check_item_count == 3)
+        {
+            return true;
         }
-        return true;
+        else
+        {
+            return false;
+        }
     }
 
     void OnTriggerStay(Collider other){
-        if(other.tag == "Bear"){
+        if(other.name == "picture" || other.name == "Teacup" || other.name == "Black King"){
             nearObject = other.gameObject;
-            Debug.Log(nearObject.name);
         }
-        if(other.tag == "Key"){
+        if(other.name == "emptyframe" || other.name == "Teacupsaucer" || other.name == "Board"){
             nearObject = other.gameObject;
         }        
     }

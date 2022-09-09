@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class Player : MonoBehaviour
+public class Player2 : MonoBehaviour
 {
     public float  speed;
-    public GameObject[] item;
-    public bool[] hasitem;
 
     [SerializeField]
     private float cameraRotationLimit;  
@@ -38,9 +38,12 @@ public class Player : MonoBehaviour
 
     GameObject nearObject;
 
+    bool get_item_state;
+
     // Start is called before the first frame update
     void Start(){
         myRigid = GetComponent<Rigidbody>();  // private
+        get_item_state = false;
     }
 
     void Awake()
@@ -130,38 +133,23 @@ public class Player : MonoBehaviour
 
     void Interation(){
         if(e_Down && nearObject != null && !is_jump && !is_Dodge ){
-            if(nearObject.tag == "Bear"){
-                Item item = nearObject.GetComponent<Item>();
-                int bearIndex = item.val;
-                hasitem[bearIndex] = true;
-                Destroy(nearObject);
-                if(item_check() == true){
-                    trans = GameObject.FindWithTag("closet").GetComponent<Transform>();
-                    trans.Translate(Vector3.right*7);
-                    // Destroy(GameObject.FindWithTag("closet"));
-                }
+            if(nearObject.name == "Ceramic2"){
+                print("success");
+                //SceneManager.LoadScene("성공scene이름");
+                
+            }
+            else{
+                print("false");
+                //SceneManager.LoadScene("실패scene이름");
             }
         }
     }
 
-
-    bool item_check(){
-        for(int i = 0; i<4; i++){
-            if(hasitem[i] == false){
-                return false;
-            }
-        }
-        return true;
-    }
 
     void OnTriggerStay(Collider other){
-        if(other.tag == "Bear"){
+        if(other.name == "Ceramic1" || other.name == "Ceramic2" || other.name == "Ceramic3" || other.name == "Ceramic4"){
             nearObject = other.gameObject;
-            Debug.Log(nearObject.name);
         }
-        if(other.tag == "Key"){
-            nearObject = other.gameObject;
-        }        
     }
 
     void OnTriggerEixt(Collider other){
