@@ -61,6 +61,7 @@ public class Player : MonoBehaviour
         Jump();
         Dodge();
         Interation();
+        OnMouseDown();
         // push_key();
     }
 
@@ -144,7 +145,7 @@ public class Player : MonoBehaviour
                     // Vector3 move = new Vector3(1, 0, 1).normalized;
                     // trans.position += move * 100 * Time.deltaTime;
 
-                    Destroy(GameObject.FindWithTag("Key"));
+                    Destroy(GameObject.FindWithTag("closet"));
                 }
             }
         }
@@ -222,6 +223,11 @@ public class Player : MonoBehaviour
         myRigid.MoveRotation(myRigid.rotation * Quaternion.Euler(_characterRotationY)); // 쿼터니언 * 쿼터니언
         // Debug.Log(myRigid.rotation);  // 쿼터니언
         // Debug.Log(myRigid.rotation.eulerAngles); // 벡터
+    }
+
+    void OnMouseDown() 
+    {
+        print(gameObject);
     }
 
 
