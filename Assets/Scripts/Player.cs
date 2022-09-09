@@ -137,7 +137,7 @@ public class Player : MonoBehaviour
                 Destroy(nearObject);
                 if(item_check() == true){
                     trans = GameObject.FindWithTag("closet").GetComponent<Transform>();
-                    trans.Translate(Vector3.right*5);
+                    trans.Translate(Vector3.right*7);
                     // Destroy(GameObject.FindWithTag("closet"));
                 }
             }
