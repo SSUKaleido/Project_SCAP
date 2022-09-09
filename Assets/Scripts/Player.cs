@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-
     public float  speed;
     public GameObject[] item;
     public bool[] hasitem;
@@ -57,12 +56,9 @@ public class Player : MonoBehaviour
         Move(); 
         CameraRotation();
         CharacterRotation(); 
-        // Turn();
         Jump();
         Dodge();
         Interation();
-        OnMouseDown();
-        // push_key();
     }
 
     void GetInPut(){
@@ -140,12 +136,9 @@ public class Player : MonoBehaviour
                 hasitem[bearIndex] = true;
                 Destroy(nearObject);
                 if(item_check() == true){
-                    // trans = GameObject.FindWithTag("Key").GetComponent<Transform>();
-
-                    // Vector3 move = new Vector3(1, 0, 1).normalized;
-                    // trans.position += move * 100 * Time.deltaTime;
-
-                    Destroy(GameObject.FindWithTag("closet"));
+                    trans = GameObject.FindWithTag("closet").GetComponent<Transform>();
+                    trans.Translate(Vector3.right*5);
+                    // Destroy(GameObject.FindWithTag("closet"));
                 }
             }
         }
@@ -220,31 +213,9 @@ public class Player : MonoBehaviour
             _yRotation = 0;
         }
         Vector3 _characterRotationY = new Vector3(0f, _yRotation, 0f) * lookSensitivity;
-        myRigid.MoveRotation(myRigid.rotation * Quaternion.Euler(_characterRotationY)); // 쿼터니언 * 쿼터니언
-        // Debug.Log(myRigid.rotation);  // 쿼터니언
-        // Debug.Log(myRigid.rotation.eulerAngles); // 벡터
+        myRigid.MoveRotation(myRigid.rotation * Quaternion.Euler(_characterRotationY));
     }
-
-    void OnMouseDown() 
-    {
-        print(gameObject);
-    }
-
-
-    // private void push_key()
-    // {
-    //     if(Input.GetMouseButtonDown(0))
-    //     {
-    //         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-    //         RaycastHit hit = new RaycastHit();
-
-    //         if(true == (Physics.Raycast(ray.origin, ray.direction * 10, out hit)))
-    //         {
-    //             print(hit);
-    //         }
-    //     }
-    // }
+   
 
 }
 

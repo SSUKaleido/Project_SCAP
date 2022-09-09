@@ -348,9 +348,12 @@
 -r:"Library/Bee/artifacts/2400b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/QuarterView 3D Action BE5/ReadMe/Scripts/ReadmeBE5.cs"
 "Assets/Scripts/Camera.cs"
+"Assets/Scripts/Door.cs"
 "Assets/Scripts/Follow.cs"
 "Assets/Scripts/Item.cs"
 "Assets/Scripts/Player.cs"
+"Assets/Scripts/num_key_1.cs"
+"Assets/obj.cs"
 -langversion:9.0
 
 /deterministic
