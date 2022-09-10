@@ -27,6 +27,6 @@ EditorBuildSettings:
     path: Assets/Scenes/quizroom.unity
     guid: 6a8490b5caefc40488146b0d52bafefb
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/secondfloor.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}

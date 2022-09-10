@@ -14,7 +14,7 @@ public class InputTest : MonoBehaviour
         {
             Debug.Log("Main Input Empty");
         }
-        else if(input.text == "1234")
+        else if(input.text == "4730")
         {
             SceneManager.LoadScene("firstfloor");
             Debug.Log("Correct");
