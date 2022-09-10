@@ -13,7 +13,7 @@ public class ChangeSceneGame : MonoBehaviour
     private IEnumerator WaitforSceneLoad()
     {
         yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
    

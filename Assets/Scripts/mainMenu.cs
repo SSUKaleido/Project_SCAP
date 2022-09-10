@@ -20,7 +20,7 @@ public class mainMenu : MonoBehaviour
     private  IEnumerator WaitforSceneLoad()
     {
         yield return new WaitForSeconds(2);
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     
