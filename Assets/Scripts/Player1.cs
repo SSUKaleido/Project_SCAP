@@ -37,6 +37,9 @@ public class Player1 : MonoBehaviour
     Animator anim;
 
     GameObject nearObject;
+    GameObject obj1;
+    GameObject obj2;
+    GameObject obj3;
 
     bool get_item_state;
     int item_val;
@@ -45,6 +48,12 @@ public class Player1 : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         myRigid = GetComponent<Rigidbody>();  // private
+        obj1 = GameObject.Find("picture_s");
+        obj2 = GameObject.Find("Teacup_s");
+        obj3 = GameObject.Find("Black King_s");
+        obj1.active = false;
+        obj2.active = false;
+        obj3.active = false;
         check_item_count = 0;
         get_item_state = false;
     }
@@ -89,6 +98,7 @@ public class Player1 : MonoBehaviour
         moveVec = _velocity;
         if(is_Dodge){
             moveVec = dodgeVec;
+            _velocity = dodgeVec;
         }
         
         myRigid.MovePosition(transform.position + _velocity * Time.deltaTime);
@@ -140,21 +150,17 @@ public class Player1 : MonoBehaviour
 
     void Interation(){
         if(e_Down && nearObject != null && !is_jump && !is_Dodge && !get_item_state){
-            print("get1");
             if(nearObject.name == "picture"){
-                print("get1");
                 get_item_state = true;
                 Destroy(nearObject);
                 item_val = 1;
             }
             else if(nearObject.name == "Teacup"){
-                print("get2");
                 get_item_state = true;
                 Destroy(nearObject);
                 item_val = 2;
             }
             else if(nearObject.name == "Black King"){
-                print("get3");
                 get_item_state = true;
                 Destroy(nearObject);
                 item_val = 3;
@@ -163,17 +169,17 @@ public class Player1 : MonoBehaviour
         else if(e_Down && nearObject != null && !is_jump && !is_Dodge && get_item_state){
 
             if(nearObject.name == "emptyframe" && item_val == 1){
-                print("drop1");
+                obj1.active = true;
                 get_item_state = false;
                 check_item_count += 1;
             }
             else if(nearObject.name == "Teacupsaucer" && item_val == 2){
-                print("drop2");
+                obj2.active = true;
                 get_item_state = false;
                 check_item_count += 1;
             }
             else if(nearObject.name == "Board" && item_val == 3){
-                print("drop3");
+                obj3.active = true;
                 get_item_state = false;
                 check_item_count += 1;
             }
