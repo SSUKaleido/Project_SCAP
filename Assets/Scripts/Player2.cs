@@ -60,7 +60,6 @@ public class Player2 : MonoBehaviour
         CameraRotation();
         CharacterRotation(); 
         Jump();
-        Dodge();
         Interation();
     }
 
@@ -75,25 +74,20 @@ public class Player2 : MonoBehaviour
     }
 
     void Move(){
+        if(is_jump){
+            hAxis = vAxis = 0;
+        }
         Vector3 _moveHorizontal = transform.right * hAxis; 
         Vector3 _moveVertical = transform.forward * vAxis; 
 
         Vector3 _velocity = (_moveHorizontal + _moveVertical).normalized * speed * (shift_Down ? 0.3f : 1f); 
-        moveVec = _velocity;
-        if(is_Dodge){
-            moveVec = dodgeVec;
-        }
         
         myRigid.MovePosition(transform.position + _velocity * Time.deltaTime);
 
-        anim.SetBool("isRun", moveVec != Vector3.zero);
+        anim.SetBool("isRun", _velocity != Vector3.zero);
         anim.SetBool("isWalk", shift_Down);
     }
 
-    void Turn()
-    {
-        transform.LookAt(transform.position + moveVec);
-    }
 
     void Jump()
     {

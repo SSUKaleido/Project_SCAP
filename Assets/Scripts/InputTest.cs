@@ -12,20 +12,6 @@ public class InputTest : MonoBehaviour
     float time = 0f;
     float F_time = 1f;
 
-    IEnumerator fade()
-    {
-        Panel.gameObject.SetActive(true);
-        Color alpha = Panel.color;
-        while(alpha.a < 1f)
-        {
-            time += Time.deltaTime / F_time;
-            alpha.a = Mathf.Lerp(0, 1, time);
-            Panel.color = alpha;
-            yield return null;
-        }
-        yield return null;
-    }
-
     void LockInput(InputField input)
     {
         if(input.text.Length == 0)
@@ -34,7 +20,6 @@ public class InputTest : MonoBehaviour
         }
         else if(input.text == "3740")
         {
-            StartCoroutine(fade());
             SceneManager.LoadScene("firstfloor");
             Debug.Log("Correct");
         }
