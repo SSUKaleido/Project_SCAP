@@ -2,12 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Happyending_fadeout : MonoBehaviour
 {
     public Image Panel;
     float time = 0f;
     float F_time = 1f;
+
+    private IEnumerator WaitforSceneLoad()
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene(9);
+    }
+
 
     IEnumerator fadeout()
     {
@@ -28,7 +36,7 @@ public class Happyending_fadeout : MonoBehaviour
     void Start()
     {   
         StartCoroutine(fadeout());
-
+        StartCoroutine(WaitforSceneLoad());
     }
 
 }
