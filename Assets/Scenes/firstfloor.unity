@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53912491056aca53682b1714f3af937f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 100
   cameraRotationLimit: 5
   theCamera: {fileID: 109085978}
   lookSensitivity: 1
